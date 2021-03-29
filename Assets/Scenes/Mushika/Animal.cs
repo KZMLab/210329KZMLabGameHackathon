@@ -8,10 +8,14 @@ public class Animal : MonoBehaviour
     private Rigidbody2D rb = null;
     private float timeOut = 2.0f;
     private float timeElapsed;
+    private float timeAttack;
     private float movex;
     private float movey;
     private float speed = 2;
     private int food = 0;
+    private int hp = 3;
+    private bool chase = false;
+    private int item = 0;
 
     void Start()
     {
@@ -26,7 +30,7 @@ public class Animal : MonoBehaviour
 
         timeElapsed += Time.deltaTime;
 
-        if (timeElapsed >= timeOut)
+        if (timeElapsed >= timeOut && chase == false)
         {
             rb.velocity = new Vector2(movex*speed, movey*speed);
 
@@ -34,16 +38,39 @@ public class Animal : MonoBehaviour
             timeOut = Random.Range(1.0f, 3.0f);
         }
 
-        if (Input.GetKey("left shift"))
+        if(chase == true)
         {
-            Debug.Log("‘‚¦‚½");
-            food++;
+            rb.velocity = new Vector2(0, 0); //animal-player
         }
 
+        Debug.Log(food);
+
+    }
+    
+    public bool GetFood()
+    {
+        food++;
         if(food >= 3)
         {
-            Debug.Log("’‡ŠÔ‚É‚È‚Á‚½");
+            Destroy(this.gameObject);
+            return true;
         }
-        Debug.Log(food);
+        return false;
     }
+
+
+    public int Hit()
+    {
+        chase = true;
+        hp--;
+        if(hp <= 0)
+        {
+            Destroy(this.gameObject);
+            item = Random.Range(2, 5);
+            return item;
+        }
+        return 0;
+
+    }
+
 }
