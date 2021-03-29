@@ -14,25 +14,35 @@ public class ButtonScript : MonoBehaviour
     {
         //自身のボタンテキスト取得
         myText = GetComponentInChildren<Text>().text;
-        
+        //ゲームマネージャーのスクリプト取得(scene変数を変更する)
+        gameManager = GameObject.Find("GameManager");
+        gm = gameManager.GetComponent<GameManager>();
     }
 
-    public void onClick()
+    public void OnClick()
     {
+        Debug.Log("Clicked");
+        gm.sceneChange = true;
         switch (myText)
         {
             case "始める":
-                return;
+                gm.scene = GameManager.GameScene.HOWTOPLAY;
+                break;
             case "やめる":
-                return;
+                gm.scene = GameManager.GameScene.GAMEOVER;
+                break;
             case "ゲーム開始":
-                return;
+                gm.scene = GameManager.GameScene.GAME;
+                break;
             case "戻る":
-                return;
+                gm.scene = GameManager.GameScene.TITLE;
+                break;
             case "再挑戦":
-                return;
+                gm.scene = GameManager.GameScene.GAME;
+                break;
             case "タイトル":
-                return;
+                gm.scene = GameManager.GameScene.TITLE;
+                break;
         }
     }
 }

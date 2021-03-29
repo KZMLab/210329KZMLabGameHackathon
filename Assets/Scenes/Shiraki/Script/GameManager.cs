@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         GAME,
         GAMEOVER,
     }
-    int SceneCount = 4;
+    public int SceneCount = 4;
 
     /*UI*/
     GameObject Title;
@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     GameObject GameOver;
     /*--*/
 
-    GameScene scene; //ゲームシーン管理変数
+    public GameScene scene; //ゲームシーン管理変数
 
     bool enableControll; //ユーザの操作を受け付けるかどうか
 
-    bool sceneChange; //シーンが変化したかどうか
+    public bool sceneChange; //シーンが変化したかどうか
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
             case GameScene.GAME:
                 SetScene(scene);
                 /*ゲーム処理*/
-
+                scene = GameScene.GAMEOVER; //今はとりあえずゲームオーバー
+                sceneChange = true;
                 /*----------*/
                 Debug.Log("ゲーム処理\n");
                 break; 
