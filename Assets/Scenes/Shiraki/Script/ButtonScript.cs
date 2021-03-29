@@ -25,22 +25,22 @@ public class ButtonScript : MonoBehaviour
         gm.sceneChange = true;
         switch (myText)
         {
-            case "始める":
+            case "Start":
                 gm.scene = GameManager.GameScene.HOWTOPLAY;
                 break;
-            case "やめる":
+            case "Exit":
                 gm.scene = GameManager.GameScene.GAMEOVER;
                 break;
-            case "ゲーム開始":
+            case "GameStart":
                 gm.scene = GameManager.GameScene.GAME;
                 break;
-            case "戻る":
+            case "Return":
                 gm.scene = GameManager.GameScene.TITLE;
                 break;
-            case "再挑戦":
+            case "Retry":
                 gm.scene = GameManager.GameScene.GAME;
                 break;
-            case "タイトル":
+            case "Title":
                 gm.scene = GameManager.GameScene.TITLE;
                 break;
         }
