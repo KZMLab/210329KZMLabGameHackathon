@@ -123,6 +123,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1351122757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351122758}
+  - component: {fileID: 1351122759}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1351122758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351122757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.13635644, y: 0.06399542, z: 0.030188978}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1351122759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351122757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d42d7d0d94744729c9b003a8396d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 30
+  rows: 30
+  floorTiles:
+  - {fileID: 5544860599079502474, guid: d8060d715d94745baaa801fe4254db48, type: 3}
+  - {fileID: 2646306821903344342, guid: a344db06fd94446b3b884dda16085865, type: 3}
+  - {fileID: 4813831981554447239, guid: bce8974693bac4652b305aa602944261, type: 3}
+  - {fileID: 710706394826217529, guid: 46672fe5df0664c4c86fd245277e085f, type: 3}
+  - {fileID: 5912900408242491264, guid: dba026080c34446d9b94c8957854ba37, type: 3}
+  - {fileID: 5380043399801192017, guid: 9f51b5a56c0754a3e9a253779595995b, type: 3}
+  outerWallTiles:
+  - {fileID: 2637713372577060256, guid: 934c8b4134c3845dfb6f094ec3b886de, type: 3}
+  foodTile: {fileID: 4777026798006970149, guid: 3496aad2a36c745ec975123e52a6762a,
+    type: 3}
+  grassTile: {fileID: 1685084007114784035, guid: 7c2bbb0fb2d204bd5905fe9996948e63,
+    type: 3}
 --- !u!1 &1526636291
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,8 +216,8 @@ Camera:
   m_GameObject: {fileID: 1526636291}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -200,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526636291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 5, y: 4.65, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
