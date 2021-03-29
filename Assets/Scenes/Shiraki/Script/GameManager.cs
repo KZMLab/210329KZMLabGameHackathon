@@ -4,15 +4,117 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameScene
+    {
+        TITLE,
+        HOWTOPLAY,
+        GAME,
+        GAMEOVER,
+    }
+    int SceneCount = 4;
+
+    /*UI*/
+    GameObject Title;
+    GameObject HowToPlay;
+    GameObject Game;
+    GameObject GameOver;
+    /*--*/
+
+    GameScene scene; //ゲームシーン管理変数
+
+    bool enableControll; //ユーザの操作を受け付けるかどうか
+
+    bool sceneChange; //シーンが変化したかどうか
+
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("スタート\n");
+        scene = GameScene.TITLE;
 
+        Title = GameObject.Find("TitleScreen");
+        Title.SetActive(true);
+
+        HowToPlay = GameObject.Find("HowToPlayScreen");
+        HowToPlay.SetActive(false);
+
+        GameOver = GameObject.Find("GameOverScreen");
+        GameOver.SetActive(false);
+
+        enableControll = true; //操作可能
+
+        sceneChange = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (scene)
+        {
+            case GameScene.TITLE:
+                SetScene(scene);
+                /*タイトル処理*/
+
+                /*------------*/
+                Debug.Log("タイトル処理\n");
+                break;
+            case GameScene.HOWTOPLAY:
+                SetScene(scene);
+                /*操作説明処理*/
+
+                /*------------*/
+                Debug.Log("操作説明処理\n");
+                break;
+            case GameScene.GAME:
+                SetScene(scene);
+                /*ゲーム処理*/
+
+                /*----------*/
+                Debug.Log("ゲーム処理\n");
+                break; 
+            case GameScene.GAMEOVER:
+                SetScene(scene);
+                /*ゲームオーバー処理*/
+
+                /*------------------*/
+                Debug.Log("ゲームオーバー処理\n");
+                break;
+        }
+    }
+
+    //ボタン関数で呼び出す
+    void SetScene(GameScene tmpScene)
+    {
+        if (sceneChange) //シーン変更フラグが立っているか
+        {
+            for (int i = 0; i < SceneCount; i++)
+            {
+                switch (tmpScene)
+                {
+                    case GameScene.TITLE:
+                        Title.SetActive(true);
+                        HowToPlay.SetActive(false);
+                        GameOver.SetActive(false);
+                        break;
+                    case GameScene.HOWTOPLAY:
+                        Title.SetActive(false);
+                        HowToPlay.SetActive(true);
+                        GameOver.SetActive(false);
+                        break;
+                    case GameScene.GAME:
+                        Title.SetActive(false);
+                        HowToPlay.SetActive(false);
+                        GameOver.SetActive(false);
+                        break;
+                    case GameScene.GAMEOVER:
+                        Title.SetActive(false);
+                        HowToPlay.SetActive(false);
+                        GameOver.SetActive(true);
+                        break;
+                }
+            }
+            //シーン変更終了
+            sceneChange = false;
+        }
     }
 }
