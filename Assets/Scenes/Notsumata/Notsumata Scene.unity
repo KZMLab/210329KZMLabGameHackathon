@@ -166,15 +166,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d42d7d0d94744729c9b003a8396d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 30
-  rows: 30
+  columns: 20
+  rows: 20
+  grassCount: 3
+  foodCount: 3
   floorTiles:
   - {fileID: 5544860599079502474, guid: d8060d715d94745baaa801fe4254db48, type: 3}
+  - {fileID: 5544860599079502474, guid: d8060d715d94745baaa801fe4254db48, type: 3}
   - {fileID: 2646306821903344342, guid: a344db06fd94446b3b884dda16085865, type: 3}
-  - {fileID: 4813831981554447239, guid: bce8974693bac4652b305aa602944261, type: 3}
   - {fileID: 710706394826217529, guid: 46672fe5df0664c4c86fd245277e085f, type: 3}
   - {fileID: 5912900408242491264, guid: dba026080c34446d9b94c8957854ba37, type: 3}
   - {fileID: 5380043399801192017, guid: 9f51b5a56c0754a3e9a253779595995b, type: 3}
+  - {fileID: 5544860599079502474, guid: d8060d715d94745baaa801fe4254db48, type: 3}
+  - {fileID: 5544860599079502474, guid: d8060d715d94745baaa801fe4254db48, type: 3}
+  - {fileID: 2646306821903344342, guid: a344db06fd94446b3b884dda16085865, type: 3}
   outerWallTiles:
   - {fileID: 2637713372577060256, guid: 934c8b4134c3845dfb6f094ec3b886de, type: 3}
   foodTile: {fileID: 4777026798006970149, guid: 3496aad2a36c745ec975123e52a6762a,
@@ -258,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526636291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 4.65, z: -9}
+  m_LocalPosition: {x: 10, y: 9.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

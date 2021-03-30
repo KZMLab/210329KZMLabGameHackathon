@@ -23,15 +23,20 @@ public class BoardManager : MonoBehaviour
     public int columns = 20;
     public int rows = 20;
 
-    // grassは1〜3個出る
-    public Count grassCount = new Count(1,3);
-    // foodは1〜3個出る
-    public Count foodCount = new Count(1,3);
+    // grassは3個出る
+    public int grassCount = 3;
+    // foodは3個出る
+    public int foodCount = 3;
 
     public GameObject[] floorTiles;
     public GameObject[] outerWallTiles;
     public GameObject foodTile;
     public GameObject grassTile;
+
+		// 今存在するgrassをカウントするための変数
+		private int existGrass = 0;
+		// 今存在するfoodをカウントするための変数
+		private int existFood = 0;
 
     // オブジェクトの位置情報を保存する変数
 	private Transform boardHolder;
@@ -74,7 +79,7 @@ public class BoardManager : MonoBehaviour
 					toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 				}
 				//床or外壁を生成し、instance変数に格納
-				GameObject instance = Instantiate(toInstantiate, new Vector3(x*0.32f, y*0.32f, 0f),
+				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f),
 					Quaternion.identity) as GameObject;
 				//生成したinstanceをBoardオブジェクトの子オブジェクトとする
 				instance.transform.SetParent(boardHolder);
@@ -84,13 +89,29 @@ public class BoardManager : MonoBehaviour
 
     Vector3 RandomPosition () 
     {
-		//0〜36からランダムで1つ決定し、位置情報を確定
+		//ランダムで1つ決定し、位置情報を確定
 		int randomIndex = Random.Range(0, gridPositions.Count);
 		Vector3 randomPosition = gridPositions[randomIndex];
 		//ランダムで決定した数値は削除
 		gridPositions.RemoveAt(randomIndex);
 		//確定した位置情報を返す
 		return randomPosition;
+	}
+
+	void LayoutObjectAtRandom (GameObject tile, int count)
+	{
+		for (int i = 0; i < count; i++) {
+			//gridPositionから位置情報を１つ取得
+			Vector3 randomPosition = RandomPosition();
+			//引数tileArrayからランダムで1つ選択
+			// GameObject tileChoise = tileArray[Random.Range(0, tileArray.Length)];
+			GameObject tileChoise = tile;
+			//ランダムで決定した位置でオブジェクトを生成
+			Instantiate (tileChoise, randomPosition, Quaternion.identity);
+
+			if(tileChoise == foodTile)existFood++;
+			else if(tileChoise == grassTile)existGrass++;
+		}
 	}
 
     //オブジェクトを配置していくメソッド
@@ -102,8 +123,8 @@ public class BoardManager : MonoBehaviour
 		//配置できる位置を決定し、
 		InitialiseList();
 		//内壁・アイテム・敵キャラをランダムで配置し、
-		// LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
-		// LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
+		LayoutObjectAtRandom(foodTile, foodCount);
+		LayoutObjectAtRandom(grassTile, grassCount);
 		//Mathf.Log : 対数で計算。level=2なら4、level=3なら8
 		// int enemyCount = (int)Mathf.Log(level, 2f);
 		// LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
@@ -114,5 +135,11 @@ public class BoardManager : MonoBehaviour
     void Awake()
     {
         SetupScene(0);
+				// Debug.Log(existFood + " , " +existGrass);
     }
+
+		void Update()
+		{
+			// if()
+		}
 }
