@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 8164970981087492694}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f1a26b28cc68bc48b0f20fe166f0dd8, type: 2}
+  m_Controller: {fileID: 9100000, guid: d593f5ad04c504343a40cddc5d5e84d9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -121,7 +121,12 @@ MonoBehaviour:
   speed: 0.05
   pointsPerGrass: 10
   pointsPerMeet: 20
-  target: {fileID: 6620806306966367106, guid: 6004497d17cd240478c5ef9b5d5c7574, type: 3}
+  life: 1
+  foodCount: 0
+  kusa_num: 0
+  niku_num: 0
+  target: {fileID: 5828357340042779323, guid: 878e953342c1a1e4f905470e462d557d, type: 3}
+  target2: {fileID: 6620806306966367106, guid: 6004497d17cd240478c5ef9b5d5c7574, type: 3}
 --- !u!50 &8164970981087492713
 Rigidbody2D:
   serializedVersion: 4

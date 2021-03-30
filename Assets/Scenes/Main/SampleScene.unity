@@ -329,7 +329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &89184499
 GameObject:
@@ -949,9 +949,9 @@ MonoBehaviour:
   SceneCount: 4
   Map: {fileID: 0}
   Player: {fileID: 8164970981087492694, guid: 16cde79acd7576842b29b16851dced32, type: 3}
-  Animal_kusa: {fileID: 7890299871754232922, guid: 60e9020cd85ad3f448f7572adbd7f17a,
+  Animal_kusa: {fileID: 6106461710706696850, guid: 60e9020cd85ad3f448f7572adbd7f17a,
     type: 3}
-  Animal_niku: {fileID: 7171585387966183341, guid: 12c4c51b79b77ca4f86cf7f3b1cb3d91,
+  Animal_niku: {fileID: 7582621589544394273, guid: 12c4c51b79b77ca4f86cf7f3b1cb3d91,
     type: 3}
   scene: 0
   enableControll: 0
@@ -1479,6 +1479,7 @@ MonoBehaviour:
   Animal_kusa: {fileID: 1771865386}
   Animal_niku: {fileID: 804026898}
   Esa: {fileID: 1543021999}
+  Esa_num: 0
 --- !u!114 &735772417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,7 +1559,7 @@ RectTransform:
   - {fileID: 804026900}
   - {fileID: 1543022001}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

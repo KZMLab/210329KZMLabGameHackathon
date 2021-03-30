@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
         unkoPlayer = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
         playerLife = unkoPlayer.GetComponent<player>();
         playerLife.life = 1;
+        playerLife.foodCount = 0;
         //“®•¨‚Ì”z’u
         for (int i = 0; i < 10; i++)
         {

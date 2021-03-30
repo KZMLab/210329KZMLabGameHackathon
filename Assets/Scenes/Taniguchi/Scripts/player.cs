@@ -34,7 +34,8 @@ public class player : MonoBehaviour
     void Start()
     {
 
-
+        foodCount = 0;
+        life = 1;
         animator = GetComponent<Animator>();
         boxcollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
@@ -45,12 +46,12 @@ public class player : MonoBehaviour
     void Update()
     {
         Move();
-        if (Input.GetKey(KeyCode.Space) && !isPressed)
+        if (Input.GetKeyDown(KeyCode.Q) && !isPressed)
         {
             isPressed = true;
             Love();
         }
-        if (Input.GetKey(KeyCode.Q) && !isPressed2)
+        if (Input.GetKeyDown(KeyCode.Space) && !isPressed2)
         {
             isPressed2 = true;
             Feed();
@@ -83,11 +84,16 @@ public class player : MonoBehaviour
 
     void Feed()
     {
-        if (foodCount > 0) foodCount--;
-        Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
+        if (foodCount > 0)
+        {
+            foodCount--;
+            Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
 
-        Instantiate(target, newItemPos, Quaternion.identity);
-        animator.SetTrigger("PlayerFeed");
+            Instantiate(target, newItemPos, Quaternion.identity);
+            animator.SetTrigger("PlayerFeed");
+
+            isPressed2 = false;
+        }
     }
 
     void Love()
@@ -96,6 +102,8 @@ public class player : MonoBehaviour
 
         Instantiate(target2, newItemPos, Quaternion.identity);
         animator.SetTrigger("PlayerLove");
+        
+        isPressed = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
