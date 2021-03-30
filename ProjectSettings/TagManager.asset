@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Food
   - grass
-  - WildAnimal
+  - Animal_kusa
+  - Animal_niku
   layers:
   - Default
   - TransparentFX

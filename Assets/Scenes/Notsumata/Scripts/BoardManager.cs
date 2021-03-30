@@ -6,18 +6,26 @@ using Random = UnityEngine.Random;
 
 public class BoardManager : MonoBehaviour
 {
-    // カウント用クラスを設定
-    public class Count
-    {
-        public int minimum;
-        public int maximum;
+		GameObject[] grassObjects;
+		GameObject[] foodObjects;
 
-        public Count(int min, int max)
-        {
-            minimum = min;
-            maximum = max;
-        }
-    };
+    private float foodTimer = 0.0f;
+    public float foodInterval = 3.0f;
+		private float grassTimer = 0.0f;
+		public float grassInterval = 3.0f;
+
+    // // カウント用クラスを設定
+    // public class Count
+    // {
+    //     public int minimum;
+    //     public int maximum;
+
+    //     public Count(int min, int max)
+    //     {
+    //         minimum = min;
+    //         maximum = max;
+    //     }
+    // };
 
     // 縦の列、横の列のタイル数を設定
     public int columns = 20;
@@ -32,11 +40,6 @@ public class BoardManager : MonoBehaviour
     public GameObject[] outerWallTiles;
     public GameObject foodTile;
     public GameObject grassTile;
-
-		// 今存在するgrassをカウントするための変数
-		private int existGrass = 0;
-		// 今存在するfoodをカウントするための変数
-		private int existFood = 0;
 
     // オブジェクトの位置情報を保存する変数
 	private Transform boardHolder;
@@ -108,9 +111,6 @@ public class BoardManager : MonoBehaviour
 			GameObject tileChoise = tile;
 			//ランダムで決定した位置でオブジェクトを生成
 			Instantiate (tileChoise, randomPosition, Quaternion.identity);
-
-			if(tileChoise == foodTile)existFood++;
-			else if(tileChoise == grassTile)existGrass++;
 		}
 	}
 
@@ -118,28 +118,86 @@ public class BoardManager : MonoBehaviour
 	// 床を生成するタイミングでGameManagerから呼ばれる
 	public void SetupScene (int level)
 	{
-		//床と外壁を配置し、
+		//床と外壁を配置
 		BoardSetup();
-		//配置できる位置を決定し、
+		// リストの初期化
 		InitialiseList();
-		//内壁・アイテム・敵キャラをランダムで配置し、
+		//アイテムをランダムで配置
 		LayoutObjectAtRandom(foodTile, foodCount);
 		LayoutObjectAtRandom(grassTile, grassCount);
-		//Mathf.Log : 対数で計算。level=2なら4、level=3なら8
-		// int enemyCount = (int)Mathf.Log(level, 2f);
-		// LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
-		//Exitを7, 7の位置に配置する。
-		// Instantiate(exit, new Vector3(columns - 1, rows - 1, 0F), Quaternion.identity);
 	}
 
     void Awake()
     {
         SetupScene(0);
-				// Debug.Log(existFood + " , " +existGrass);
     }
 
 		void Update()
 		{
-			// if()
+			if(gridPositions.Count <= grassCount + foodCount)
+			{
+				InitialiseList();
+				for(int i=0; i < grassObjects.Length; i++)
+				{
+					Debug.Log(grassObjects[0].transform.position.x);
+					gridPositions.Remove(new Vector3(grassObjects[i].transform.position.x,
+																						grassObjects[i].transform.position.y,
+																						grassObjects[i].transform.position.z));
+				}
+				for(int j=0; j < foodObjects.Length; j++)
+				{
+					Debug.Log(foodObjects[0].transform.position.x);
+					gridPositions.Remove(new Vector3(foodObjects[j].transform.position.x,
+																						foodObjects[j].transform.position.y,
+																						foodObjects[j].transform.position.z));
+				}
+			}
+
+
+			// grassの数が設定数より少なければ増やす処理
+			if(CheckGrass())
+			{
+				grassTimer += Time.deltaTime;
+				// Debug.Log("grass: " + grassTimer);
+				if(grassTimer > grassInterval)
+				{
+					LayoutObjectAtRandom(grassTile, 1);
+					grassTimer = 0;
+				}
+			}
+
+			// foodの数が設定数より少なければ増やす処理
+			if(CheckFood())
+			{
+				foodTimer += Time.deltaTime;
+				// Debug.Log("food: " + foodTimer);
+				if(foodTimer > foodInterval)
+				{
+					LayoutObjectAtRandom(foodTile, 1);
+					foodTimer = 0;
+				}
+			}
+		}
+
+		private bool CheckGrass()
+		{
+			grassObjects = GameObject.FindGameObjectsWithTag("grass");
+			// Debug.Log(tagObjects.Length);
+			if(grassObjects.Length < grassCount)
+			{
+				return true;
+			}
+			return false;
+		}
+
+		private bool CheckFood()
+		{
+			foodObjects = GameObject.FindGameObjectsWithTag("Food");
+			// Debug.Log(tagObjects.Length);
+			if(foodObjects.Length < foodCount)
+			{
+				return true;
+			}
+			return false;
 		}
 }

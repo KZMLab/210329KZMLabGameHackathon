@@ -16,6 +16,8 @@ public class Animal_kusa : MonoBehaviour
     private int hp = 3;
     private bool chase = false;
     private int item = 0;
+    private GameObject player;
+    private bool state = true;  //true:–ì¶@false:’‡ŠÔ
 
     void Start()
     {
@@ -29,8 +31,8 @@ public class Animal_kusa : MonoBehaviour
         movey = Random.Range(-1.0f, 1.0f);
 
         timeElapsed += Time.deltaTime;
-
-        if (timeElapsed >= timeOut && chase == false)
+        
+        if (timeElapsed >= timeOut && chase == false && state == true)
         {
             rb.velocity = new Vector2(movex * speed, movey * speed);
 
@@ -38,24 +40,35 @@ public class Animal_kusa : MonoBehaviour
             timeOut = Random.Range(1.0f, 3.0f);
         }
 
-        if (chase == true)
+        if (chase == true && state == true)
         {
             rb.velocity = new Vector2(0, 0); //-(animal-player)“®•¨‚Í‚É‚°‚é•ûŒü‚Å
         }
+        
+        if (state == false)
+        {
+            rb.velocity = new Vector2(player.transform.position.x, player.transform.position.y);
 
-        Debug.Log(food);
+        }
+
+        if (Input.GetKeyDown("q"))
+        {
+            state = false;
+            
+        }
+
+        Debug.Log(state);
+
 
     }
 
-    public bool GetFood()
+    public void GetFood()
     {
         food++;
         if (food >= 3)
         {
-            Destroy(this.gameObject);
-            return true;
+            state = false;
         }
-        return false;
     }
 
 

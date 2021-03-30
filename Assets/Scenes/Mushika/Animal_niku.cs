@@ -43,8 +43,6 @@ public class Animal_niku : MonoBehaviour
             rb.velocity = new Vector2(0, 0); //animal-player
         }
 
-        Debug.Log(food);
-
     }
 
     public bool GetFood()
@@ -72,5 +70,7 @@ public class Animal_niku : MonoBehaviour
         return 0;
 
     }
+
+
 
 }
