@@ -7,14 +7,14 @@ public class player : MonoBehaviour
     public float moveTime = 0.1f;
     public float speed = 0.05f;
 
-    public int pointsPerGrass = 10; //‘‚Ì‰ñ•œ—Ê
-    public int pointsPerMeet = 20; //“÷‚Ì‰ñ•œ—Ê
+    public int pointsPerGrass = 10; //ï¿½ï¿½ï¿½Ì‰ñ•œ—ï¿½
+    public int pointsPerMeet = 20; //ï¿½ï¿½ï¿½Ì‰ñ•œ—ï¿½
 
-    [HideInInspector]public int life = 1; //player‚Ì‘Ì—Í
+    [HideInInspector]public int life = 1; //playerï¿½Ì‘Ì—ï¿½
    
-    [HideInInspector] public int foodCount = 0; //Š‚·‚é‚¦‚³‚Ì”
-    [HideInInspector] public int kusa_num = 0; //–¡•û‘H“®•¨‚Ì”
-    [HideInInspector] public int niku_num = 0; //–¡•û“÷H“®•¨‚Ì”
+    [HideInInspector] public int foodCount = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚¦ï¿½ï¿½ï¿½Ìï¿½
+    [HideInInspector] public int kusa_num = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½
+    [HideInInspector] public int niku_num = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½
 
     private Animator animator;
 
@@ -22,7 +22,7 @@ public class player : MonoBehaviour
 
     private BoxCollider2D boxcollider;
     private Rigidbody2D rb2D;
-    //moveTime‚ğŒvZ‚·‚é‚Ì‚ğ’Pƒ‰»‚·‚é‚½‚ß‚Ì•Ï”
+    //moveTimeï¿½ï¿½ï¿½vï¿½Zï¿½ï¿½ï¿½ï¿½Ì‚ï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Ì•Ïï¿½
     private float inverseMoveTime;
 
     public GameObject target;
@@ -30,6 +30,12 @@ public class player : MonoBehaviour
 
     private bool isPressed = false;
     private bool isPressed2 = false;
+
+    /////////////////////////////////////////////////////////////////////////@notsumata
+    private float x = 0.0f;
+    private float y = 0.0f;
+    Vector3 prevPos;
+    /////////////////////////////////////////////////////////////////////////@notsumata
 
     void Start()
     {
@@ -45,6 +51,21 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /////////////////////////////////////////////////////////////////////////@notsumata
+        // è‡ªèº«ã®å‘ããƒ™ã‚¯ãƒˆãƒ«å–å¾—
+        if(this.transform.position.x != prevPos.x || this.transform.position.y != prevPos.y)
+        {
+            x = this.transform.position.x - prevPos.x;
+            y = this.transform.position.y - prevPos.y;
+        }
+
+        Vector2 vec = new Vector2 (x, y).normalized;
+
+        float rot = Mathf.Atan2 (vec.y, vec.x) ;
+
+        prevPos = this.transform.position;
+        /////////////////////////////////////////////////////////////////////////@notsumata
+
         Move();
         if (Input.GetKeyDown(KeyCode.Q) && !isPressed)
         {
@@ -54,7 +75,7 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isPressed2)
         {
             isPressed2 = true;
-            Feed();
+            Feed(rot);
         }
     }
 
@@ -78,18 +99,28 @@ public class player : MonoBehaviour
             animator.SetTrigger("PlayerRun");
         }
         */
+
         Vector3 inputPos = new Vector3(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed, 0);
         this.transform.position += inputPos;
     }
 
-    void Feed()
+    void Feed(float rot)
     {
         if (foodCount > 0)
         {
             foodCount--;
-            Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
+            // Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
 
-            Instantiate(target, newItemPos, Quaternion.identity);
+            // Instantiate(target, newItemPos, Quaternion.identity);
+
+            /////////////////////////////////////////////////////////////////////////@notsumata
+            Instantiate(target,
+                        new Vector3(this.transform.position.x + Mathf.Cos(rot)*3,
+                                    this.transform.position.y + Mathf.Sin(rot)*3,
+                                    this.transform.position.z),
+                        Quaternion.identity);
+            /////////////////////////////////////////////////////////////////////////@notsumata
+
             animator.SetTrigger("PlayerFeed");
 
             isPressed2 = false;
@@ -110,16 +141,16 @@ public class player : MonoBehaviour
     {
         if(other.tag == "grass")
         {
-            //‘Ì—Í‚ğ‰ñ•œ‚µotherƒIƒuƒWƒFƒNƒg‚ğíœ
+            //ï¿½Ì—Í‚ï¿½ï¿½ñ•œ‚ï¿½otherï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½íœ
             other.gameObject.SetActive(false);
-            Debug.Log("‘‚ğH‚×‚é");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½Hï¿½×‚ï¿½");
         }
         else if (other.tag == "Food")
         {
-            //‘Ì—Í‚ğ‰ñ•œ‚µotherƒIƒuƒWƒFƒNƒg‚ğíœ
+            //ï¿½Ì—Í‚ï¿½ï¿½ñ•œ‚ï¿½otherï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½íœ
             foodCount++;
             other.gameObject.SetActive(false);
-            Debug.Log("“®•¨‚ÉÚG");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ÉÚG");
         }
         else if (other.tag == "Animal_niku")
         {
