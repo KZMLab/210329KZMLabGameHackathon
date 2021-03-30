@@ -15,9 +15,13 @@ public class ChasePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Player)
+        {
+            Player = GameObject.Find("Player(Clone)");
+        }
         if (Player)
         {
-
+            transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -8.0f);
         }
     }
 }

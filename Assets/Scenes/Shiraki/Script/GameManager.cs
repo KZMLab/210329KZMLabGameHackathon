@@ -82,8 +82,6 @@ public class GameManager : MonoBehaviour
             case GameScene.GAME:
                 SetScene(scene);
                 /*ゲーム処理*/
-                if (unko) InitGame();
-                unko = false;
                 updateGame();
                 /*----------*/
                 Debug.Log("ゲーム処理\n");
@@ -135,7 +133,7 @@ public class GameManager : MonoBehaviour
     }
 
     //ゲーム初期化
-    void InitGame()
+    public void InitGame()
     {
         //動物の配置
         positionAnimals();
@@ -152,8 +150,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void terminateAnimals()
+    {
+
+    }
+
     //ゲーム更新
     void updateGame()
+    {
+
+    }
+
+    public void terminateGame()
     {
 
     }

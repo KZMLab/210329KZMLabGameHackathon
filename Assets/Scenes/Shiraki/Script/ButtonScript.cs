@@ -33,12 +33,15 @@ public class ButtonScript : MonoBehaviour
                 break;
             case "GameStart":
                 gm.scene = GameManager.GameScene.GAME;
+                gm.InitGame();
                 break;
             case "Return":
                 gm.scene = GameManager.GameScene.TITLE;
                 break;
             case "Retry":
                 gm.scene = GameManager.GameScene.GAME;
+                gm.terminateGame();
+                gm.InitGame();
                 break;
             case "Title":
                 gm.scene = GameManager.GameScene.TITLE;
