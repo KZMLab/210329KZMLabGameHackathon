@@ -15,8 +15,8 @@ public class UIControll : MonoBehaviour
     int Animal_niku_num = 0;// 肉食動物の数
     public Text Esa;
     int Esa_num = 0;// エサの数
-    const string kusa = "草食動物：";
-    const string niku = "肉食動物：";
+    const string kusa = "草食：";
+    const string niku = "肉食：";
     const string esa = "エサ：";
 
     // Start is called before the first frame update
