@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private GameObject HowToPlay;
     private GameObject Game;
     private GameObject GameOver;
+    UIControll ui;
     /*--*/
 
     /*ƒ}ƒbƒv*/
@@ -54,6 +55,8 @@ public class GameManager : MonoBehaviour
 
         Game = GameObject.Find("GameUI");
         Game.SetActive(false);
+        ui = Game.GetComponent<UIControll>();
+        Debug.Log(ui.Esa_num);
 
         GameOver = GameObject.Find("GameOverScreen");
         GameOver.SetActive(false);
