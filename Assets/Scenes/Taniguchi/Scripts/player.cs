@@ -5,12 +5,13 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     public float moveTime = 0.1f;
-    float speed = 5.0f;
+    public float speed = 0.1f;
 
     public int pointsPerGrass = 10; //草の回復量
     public int pointsPerMeet = 20; //肉の回復量
 
     private int life; //playerの体力
+   
 
     private Animator animator;
 
@@ -52,7 +53,8 @@ public class player : MonoBehaviour
 
     void Move()
     {
-        if (Input.GetMouseButtonDown(0))
+        /**
+         * if (Input.GetMouseButtonDown(0))
         {
             preMousePos = Input.mousePosition;
         }
@@ -68,6 +70,9 @@ public class player : MonoBehaviour
             this.transform.position = newPos;
             animator.SetTrigger("PlayerRun");
         }
+        */
+        Vector3 inputPos = new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed, 0);
+        this.transform.position += inputPos;
     }
 
     void Feed()
@@ -91,13 +96,14 @@ public class player : MonoBehaviour
             //体力を回復しotherオブジェクトを削除
             life += pointsPerGrass;
             other.gameObject.SetActive(false);
+            Debug.Log("草を食べる");
         }
         else if (other.tag == "Food")
         {
             //体力を回復しotherオブジェクトを削除
             life += pointsPerMeet;
             other.gameObject.SetActive(false);
-            Debug.Log("sucess");
+            Debug.Log("動物に接触");
         }
     }
 }
