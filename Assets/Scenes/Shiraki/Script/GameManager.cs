@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     /*--------------*/
 
     bool unko = true;
+    public bool GameOverFlag = false;
 
     player playerLife;
 
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
             case GameScene.GAMEOVER:
                 SetScene(scene);
                 /*ゲームオーバー処理*/
-
+                if (!GameOverFlag) GameOverFlag = true;
                 /*------------------*/
                 Debug.Log("ゲームオーバー処理\n");
                 break;
@@ -145,6 +146,8 @@ public class GameManager : MonoBehaviour
     //ゲーム初期化
     public void InitGame()
     {
+        GameOverFlag = true;
+
         //プレイヤーの配置
         unkoPlayer = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
         playerLife = unkoPlayer.GetComponent<player>();

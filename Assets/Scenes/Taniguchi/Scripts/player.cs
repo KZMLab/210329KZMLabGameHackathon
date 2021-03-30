@@ -56,6 +56,7 @@ public class player : MonoBehaviour
             isPressed2 = true;
             Feed();
         }
+        Debug.Log(foodCount);
     }
 
     void Move()
@@ -91,9 +92,8 @@ public class player : MonoBehaviour
 
             Instantiate(target, newItemPos, Quaternion.identity);
             animator.SetTrigger("PlayerFeed");
-
-            isPressed2 = false;
         }
+        isPressed2 = false;
     }
 
     void Love()
