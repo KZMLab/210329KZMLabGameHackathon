@@ -10,7 +10,7 @@ public class player : MonoBehaviour
     public int pointsPerGrass = 10; //‘‚Ì‰ñ•œ—Ê
     public int pointsPerMeet = 20; //“÷‚Ì‰ñ•œ—Ê
 
-    private int life; //player‚Ì‘Ì—Í
+    [HideInInspector]public int life = 1; //player‚Ì‘Ì—Í
    
     [HideInInspector] public int foodCount = 0; //Š‚·‚é‚¦‚³‚Ì”
     [HideInInspector] public int kusa_num = 0; //–¡•û‘H“®•¨‚Ì”
@@ -112,6 +112,10 @@ public class player : MonoBehaviour
             foodCount++;
             other.gameObject.SetActive(false);
             Debug.Log("“®•¨‚ÉÚG");
+        }
+        else if (other.tag == "Animal_niku")
+        {
+            life--;
         }
     }
 }

@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     private GameObject HowToPlay;
     private GameObject Game;
     private GameObject GameOver;
-    UIControll ui;
     /*--*/
 
     /*マップ*/
@@ -34,6 +33,8 @@ public class GameManager : MonoBehaviour
     /*--------------*/
 
     bool unko = true;
+
+    player playerLife;
 
     [HideInInspector] public GameScene scene; //ゲームシーン管理変数
 
@@ -55,8 +56,6 @@ public class GameManager : MonoBehaviour
 
         Game = GameObject.Find("GameUI");
         Game.SetActive(false);
-        ui = Game.GetComponent<UIControll>();
-        Debug.Log(ui.Esa_num);
 
         GameOver = GameObject.Find("GameOverScreen");
         GameOver.SetActive(false);
@@ -147,6 +146,7 @@ public class GameManager : MonoBehaviour
     {
         //プレイヤーの配置
         Player = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
+        playerLife = Player.GetComponent<player>();
         //動物の配置
         for (int i = 0; i < 10; i++)
         {
@@ -158,7 +158,11 @@ public class GameManager : MonoBehaviour
     //ゲーム更新
     void updateGame()
     {
-
+        if(playerLife.life == 0)
+        {
+            sceneChange = true;
+            scene = GameScene.GAMEOVER;
+        }
     }
 
     public void terminateGame()

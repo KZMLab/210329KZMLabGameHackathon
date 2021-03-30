@@ -34,7 +34,7 @@ public class ButtonScript : MonoBehaviour
                 gm.scene = GameManager.GameScene.HOWTOPLAY;
                 break;
             case "Exit":
-                gm.scene = GameManager.GameScene.GAMEOVER;
+                UnityEngine.Application.Quit();
                 break;
             case "GameStart":
                 gm.scene = GameManager.GameScene.GAME;
