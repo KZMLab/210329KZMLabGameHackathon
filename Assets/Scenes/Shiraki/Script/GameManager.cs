@@ -139,12 +139,17 @@ public class GameManager : MonoBehaviour
     {
         //動物の配置
         positionAnimals();
+        //プレイヤーの配置
+        Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
     }
 
     void positionAnimals()
     {
-            Instantiate(Animal_kusa, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
-            Instantiate(Animal_niku, new Vector3(18.0f, 15.0f, -1.0f), Quaternion.identity);
+        for (int i = 0; i < 10; i++)
+        {
+            Animals_kusa.Add(Instantiate(Animal_kusa, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity));
+            Animals_niku.Add(Instantiate(Animal_niku, new Vector3(18.0f, 15.0f, -1.0f), Quaternion.identity));
+        }
     }
 
     //ゲーム更新
