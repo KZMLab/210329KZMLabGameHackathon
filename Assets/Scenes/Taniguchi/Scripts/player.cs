@@ -7,6 +7,13 @@ public class player : MonoBehaviour
     public float moveTime = 0.1f;
     float speed = 5.0f;
 
+    public int pointsPerGrass = 10; //草の回復量
+    public int pointsPerMeet = 20; //肉の回復量
+
+    private int life; //playerの体力
+
+    private Animator animator;
+
     Vector3 preMousePos;
 
     private BoxCollider2D boxcollider;
@@ -21,6 +28,7 @@ public class player : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         boxcollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         inverseMoveTime = 1f / moveTime;
@@ -52,11 +60,13 @@ public class player : MonoBehaviour
         {
             Vector3 mousePosDiff = Input.mousePosition - preMousePos;
             preMousePos = Input.mousePosition;
-            Vector3 newPos = this.gameObject.transform.position + new Vector3(mousePosDiff.x / Screen.width, 0, mousePosDiff.y / Screen.height)*speed;
-            
+            //Vector3 newPos = this.gameObject.transform.position + new Vector3(mousePosDiff.x / Screen.width, 0, mousePosDiff.y / Screen.height)*speed;
+            Vector3 newPos = this.gameObject.transform.position + new Vector3(mousePosDiff.x / Screen.width, mousePosDiff.y / Screen.height,0) * speed;
+
             //rb2D.MovePosition(newPos);
 
             this.transform.position = newPos;
+            animator.SetTrigger("PlayerRun");
         }
     }
 
@@ -72,5 +82,22 @@ public class player : MonoBehaviour
         Vector3 newItemPos = this.gameObject.transform.position + new Vector3(1.0f, 0, 1.0f);
 
         Instantiate(target, newItemPos, Quaternion.identity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "grass")
+        {
+            //体力を回復しotherオブジェクトを削除
+            life += pointsPerGrass;
+            other.gameObject.SetActive(false);
+        }
+        else if (other.tag == "Food")
+        {
+            //体力を回復しotherオブジェクトを削除
+            life += pointsPerMeet;
+            other.gameObject.SetActive(false);
+            Debug.Log("sucess");
+        }
     }
 }
