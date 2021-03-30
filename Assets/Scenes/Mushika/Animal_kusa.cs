@@ -47,7 +47,9 @@ public class Animal_kusa : MonoBehaviour
         
         if (state == false)
         {
+            player = GameObject.Find("Animal_niku");
             rb.velocity = new Vector2(player.transform.position.x, player.transform.position.y);
+            Debug.Log("é¿çsíÜ");
 
         }
 
@@ -56,8 +58,6 @@ public class Animal_kusa : MonoBehaviour
             state = false;
             
         }
-
-        Debug.Log(state);
 
 
     }
