@@ -21,7 +21,14 @@ public class ChasePlayer : MonoBehaviour
         }
         if (Player)
         {
-            transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -8.0f);
+            if(Player.transform.position.x > 8.5 && Player.transform.position.x < 20.5){
+                transform.position = new Vector3(Player.transform.position.x, transform.position.y, -8.0f);
+            }
+
+            if (Player.transform.position.y > 3 && Player.transform.position.y < 25.5)
+            {
+                transform.position = new Vector3(transform.position.x, Player.transform.position.y, -8.0f);
+            }
         }
     }
 }
