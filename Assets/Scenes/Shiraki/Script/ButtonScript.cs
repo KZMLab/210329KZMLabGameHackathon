@@ -8,19 +8,24 @@ public class ButtonScript : MonoBehaviour
     string myText;
     GameObject gameManager;
     GameManager gm;
+    GameObject bgmSe;
+    SoundEffect se;
 
     // Start is called before the first frame update
     void Start()
     {
-        //自身のボタンテキスト取得
+        bgmSe = GameObject.Find("BGMandSE");
+        se = bgmSe.GetComponent<SoundEffect>();
+        //???g???{?^???e?L?X?g????
         myText = GetComponentInChildren<Text>().text;
-        //ゲームマネージャーのスクリプト取得(scene変数を変更する)
+        //?Q?[???}?l?[?W???[???X?N???v?g????(scene?????????X????)
         gameManager = GameObject.Find("GameManager");
         gm = gameManager.GetComponent<GameManager>();
     }
 
     public void OnClick()
     {
+        se.ButtonPush();
         Debug.Log("Clicked");
         gm.sceneChange = true;
         switch (myText)
