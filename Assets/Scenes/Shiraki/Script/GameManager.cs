@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum GameScene
+    [HideInInspector] public enum GameScene
     {
         TITLE,
         HOWTOPLAY,
         GAME,
         GAMEOVER,
     }
-    public int SceneCount = 4;
+    [HideInInspector] public int SceneCount = 4;
 
     /*UI*/
-    GameObject Title;
-    GameObject HowToPlay;
-    GameObject Game;
-    GameObject GameOver;
+    private GameObject Title;
+    private GameObject HowToPlay;
+    private GameObject Game;
+    private GameObject GameOver;
     /*--*/
 
-    public GameScene scene; //ゲームシーン管理変数
+    /*マップ*/
+    public GameObject Map;
+    /*------*/
 
-    bool enableControll; //ユーザの操作を受け付けるかどうか
+    /*プレイヤー NPC*/
+    public GameObject Player;
+    public GameObject Animal;
+    /*--------------*/
 
-    public bool sceneChange; //シーンが変化したかどうか
+    [HideInInspector] public GameScene scene; //ゲームシーン管理変数
+
+    [HideInInspector] public bool enableControll; //ユーザの操作を受け付けるかどうか
+
+    [HideInInspector] public bool sceneChange; //シーンが変化したかどうか
 
     // Start is called before the first frame update
     void Start()
@@ -68,8 +77,7 @@ public class GameManager : MonoBehaviour
             case GameScene.GAME:
                 SetScene(scene);
                 /*ゲーム処理*/
-                scene = GameScene.GAMEOVER; //今はとりあえずゲームオーバー
-                sceneChange = true;
+
                 /*----------*/
                 Debug.Log("ゲーム処理\n");
                 break; 
@@ -117,5 +125,18 @@ public class GameManager : MonoBehaviour
             //シーン変更終了
             sceneChange = false;
         }
+    }
+
+    //ゲーム初期化
+    void InitGame()
+    {
+        //マップ生成
+        Map = GameObject.Find("Map");
+    }
+
+    //ゲーム更新
+    void updateGame()
+    {
+
     }
 }
