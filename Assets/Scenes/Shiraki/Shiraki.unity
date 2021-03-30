@@ -216,6 +216,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &977116228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977116230}
+  - component: {fileID: 977116229}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &977116229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977116228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d42d7d0d94744729c9b003a8396d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 30
+  rows: 30
+  floorTiles:
+  - {fileID: 5544860599079502474, guid: d8060d715d94745baaa801fe4254db48, type: 3}
+  - {fileID: 2646306821903344342, guid: a344db06fd94446b3b884dda16085865, type: 3}
+  - {fileID: 4813831981554447239, guid: bce8974693bac4652b305aa602944261, type: 3}
+  - {fileID: 710706394826217529, guid: 46672fe5df0664c4c86fd245277e085f, type: 3}
+  - {fileID: 5912900408242491264, guid: dba026080c34446d9b94c8957854ba37, type: 3}
+  - {fileID: 5380043399801192017, guid: 9f51b5a56c0754a3e9a253779595995b, type: 3}
+  outerWallTiles:
+  - {fileID: 2637713372577060256, guid: 934c8b4134c3845dfb6f094ec3b886de, type: 3}
+  foodTile: {fileID: 4777026798006970149, guid: 3496aad2a36c745ec975123e52a6762a,
+    type: 3}
+  grassTile: {fileID: 1685084007114784035, guid: 7c2bbb0fb2d204bd5905fe9996948e63,
+    type: 3}
+--- !u!4 &977116230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977116228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004644292
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004644292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 5, y: 5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -343,7 +401,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneCount: 4
+  Map: {fileID: 0}
+  Player: {fileID: 8164970981087492694, guid: 16cde79acd7576842b29b16851dced32, type: 3}
+  Animal_kusa: {fileID: 7890299871754232922, guid: 60e9020cd85ad3f448f7572adbd7f17a,
+    type: 3}
+  Animal_niku: {fileID: 7171585387966183341, guid: 12c4c51b79b77ca4f86cf7f3b1cb3d91,
+    type: 3}
   scene: 0
+  enableControll: 0
   sceneChange: 0
 --- !u!1 &1611732831
 GameObject:

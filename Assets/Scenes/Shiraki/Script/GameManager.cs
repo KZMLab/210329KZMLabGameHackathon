@@ -26,8 +26,13 @@ public class GameManager : MonoBehaviour
 
     /*プレイヤー NPC*/
     public GameObject Player;
-    public GameObject Animal;
+    public GameObject Animal_kusa;
+    public GameObject Animal_niku;
+    private ArrayList Animals_kusa = new ArrayList();
+    private ArrayList Animals_niku = new ArrayList();
     /*--------------*/
+
+    bool unko = true;
 
     [HideInInspector] public GameScene scene; //ゲームシーン管理変数
 
@@ -77,7 +82,9 @@ public class GameManager : MonoBehaviour
             case GameScene.GAME:
                 SetScene(scene);
                 /*ゲーム処理*/
-
+                if (unko) InitGame();
+                unko = false;
+                updateGame();
                 /*----------*/
                 Debug.Log("ゲーム処理\n");
                 break; 
@@ -130,8 +137,14 @@ public class GameManager : MonoBehaviour
     //ゲーム初期化
     void InitGame()
     {
-        //マップ生成
-        Map = GameObject.Find("Map");
+        //動物の配置
+        positionAnimals();
+    }
+
+    void positionAnimals()
+    {
+            Instantiate(Animal_kusa, new Vector3(0f, 0f, -0.5f), Quaternion.identity);
+            Instantiate(Animal_niku, new Vector3(0f, 0f, -0.5f), Quaternion.identity);
     }
 
     //ゲーム更新
