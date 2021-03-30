@@ -77,6 +77,7 @@ public class player : MonoBehaviour
             isPressed2 = true;
             Feed(rot);
         }
+        Debug.Log(foodCount);
     }
 
     void Move()
@@ -122,9 +123,8 @@ public class player : MonoBehaviour
             /////////////////////////////////////////////////////////////////////////@notsumata
 
             animator.SetTrigger("PlayerFeed");
-
-            isPressed2 = false;
         }
+        isPressed2 = false;
     }
 
     void Love()
