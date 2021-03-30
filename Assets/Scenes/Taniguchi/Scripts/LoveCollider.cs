@@ -21,5 +21,9 @@ public class LoveCollider : MonoBehaviour
             Debug.Log("“®•¨‚ÉÚG");
             this.gameObject.SetActive(false);
         }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
