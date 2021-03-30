@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
         HowToPlay = GameObject.Find("HowToPlayScreen");
         HowToPlay.SetActive(false);
 
+        Game = GameObject.Find("GameUI");
+        Game.SetActive(false);
+
         GameOver = GameObject.Find("GameOverScreen");
         GameOver.SetActive(false);
 
@@ -108,21 +111,25 @@ public class GameManager : MonoBehaviour
                     case GameScene.TITLE:
                         Title.SetActive(true);
                         HowToPlay.SetActive(false);
+                        Game.SetActive(false);
                         GameOver.SetActive(false);
                         break;
                     case GameScene.HOWTOPLAY:
                         Title.SetActive(false);
                         HowToPlay.SetActive(true);
+                        Game.SetActive(false);
                         GameOver.SetActive(false);
                         break;
                     case GameScene.GAME:
                         Title.SetActive(false);
                         HowToPlay.SetActive(false);
+                        Game.SetActive(true);
                         GameOver.SetActive(false);
                         break;
                     case GameScene.GAMEOVER:
                         Title.SetActive(false);
                         HowToPlay.SetActive(false);
+                        Game.SetActive(false);
                         GameOver.SetActive(true);
                         break;
                 }
@@ -140,8 +147,8 @@ public class GameManager : MonoBehaviour
         //“®•¨‚Ì”z’u
         for (int i = 0; i < 10; i++)
         {
-            Animals_kusa.Add(Instantiate(Animal_kusa, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity));
-            Animals_niku.Add(Instantiate(Animal_niku, new Vector3(18.0f, 15.0f, -1.0f), Quaternion.identity));
+            Animals_kusa.Add(Instantiate(Animal_kusa, new Vector3(Random.Range(2, 29), Random.Range(2, 29), -1.0f), Quaternion.identity));
+            Animals_niku.Add(Instantiate(Animal_niku, new Vector3(Random.Range(2, 29), Random.Range(2, 29), -1.0f), Quaternion.identity));
         }
     }
 
