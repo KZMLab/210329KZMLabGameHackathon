@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8314526703958438427}
   - component: {fileID: -6829614760176890746}
   - component: {fileID: 7925412837205634445}
+  - component: {fileID: -923078903499424549}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -57,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &7925412837205634445
 MonoBehaviour:
@@ -71,6 +72,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ca82e4d699501488481c6a49f21f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &-923078903499424549
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620806306966367106}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9072405347884393949
 GameObject:
   m_ObjectHideFlags: 0
