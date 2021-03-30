@@ -12,7 +12,7 @@ public class player : MonoBehaviour
 
     private int life; //playerの体力
    
-    public foodCount = 0;
+    public int foodCount = 0;
 
     private Animator animator;
 
@@ -79,7 +79,7 @@ public class player : MonoBehaviour
 
     void Feed()
     {
-        if (food > 0) food--;
+        if (foodCount > 0) foodCount--;
         Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
 
         Instantiate(target, newItemPos, Quaternion.identity);
@@ -105,7 +105,7 @@ public class player : MonoBehaviour
         else if (other.tag == "Food")
         {
             //体力を回復しotherオブジェクトを削除
-            food++;
+            foodCount++;
             other.gameObject.SetActive(false);
             Debug.Log("動物に接触");
         }
