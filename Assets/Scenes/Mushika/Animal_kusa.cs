@@ -12,7 +12,7 @@ public class Animal_kusa : MonoBehaviour
     private float movex;
     private float movey;
     private float speed = 2;
-    private int food = 3;
+    private int food = 0;
     private int hp = 3;
     private bool chase = false;
     private int item = 0;
