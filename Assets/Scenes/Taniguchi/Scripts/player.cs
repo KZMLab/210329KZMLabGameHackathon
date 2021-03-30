@@ -43,12 +43,12 @@ public class player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && !isPressed)
         {
             isPressed = true;
-            Feed();
+            Love();
         }
         if (Input.GetKey(KeyCode.Q) && !isPressed2)
         {
             isPressed2 = true;
-            Love();
+            Feed();
         }
     }
 
@@ -72,7 +72,7 @@ public class player : MonoBehaviour
             animator.SetTrigger("PlayerRun");
         }
         */
-        Vector3 inputPos = new Vector3(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed, 0);
+        Vector3 inputPos = new Vector3(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed, 0);
         this.transform.position += inputPos;
     }
 
@@ -80,15 +80,15 @@ public class player : MonoBehaviour
     {
         Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
 
-        //Instantiate(target, newItemPos, Quaternion.identity);
+        Instantiate(target, newItemPos, Quaternion.identity);
         animator.SetTrigger("PlayerFeed");
     }
 
     void Love()
     {
-        Vector3 newItemPos = this.gameObject.transform.position + new Vector3(1.0f, 0, 1.0f);
+        Vector3 newItemPos = this.gameObject.transform.position;
 
-        //Instantiate(target2, newItemPos, Quaternion.identity);
+        Instantiate(target2, newItemPos, Quaternion.identity);
         animator.SetTrigger("PlayerLove");
     }
 
