@@ -19,19 +19,54 @@ public class UIControll : MonoBehaviour
     const string niku = "肉食動物：";
     const string esa = "エサ：";
 
+    GameObject playerObj;//プレイヤー
+    player playerScript;
+    private bool playerCreateFlag;
+
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        FindPlayer();
+        
+        //値の更新
+        kousinn();
+
         //表示を更新する
         Animal_kusa.text = kusa + Animal_kusa_num + "匹";
         Animal_niku.text = niku + Animal_niku_num + "匹";
         Esa.text = esa + Esa_num + "個";
         kusa_kuuhuku.value = kusa_kuuhuku_num;
         niku_kuuhuku.value = niku_kuuhuku_num;
+
+    }
+
+    void kousinn()
+    {
+        if (playerScript == null) return;
+        Animal_kusa_num = playerScript.kusa_num;
+        Animal_niku_num = playerScript.niku_num;
+        Esa_num = playerScript.foodCount;
+        Debug.Log("Esa_num:" +Esa_num);
+    }
+
+    void FindPlayer()
+    {
+        if (playerCreateFlag) return;
+        playerObj = GameObject.Find("Player(Clone)");
+        if(playerObj == null)
+        {
+            Debug.Log("notFoundPlayer");
+            playerCreateFlag = false;
+            return;
+        }
+        playerCreateFlag = true;
+        playerScript = playerObj.GetComponent<player>();
+
     }
 }
