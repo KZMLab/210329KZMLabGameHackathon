@@ -23,6 +23,7 @@ public class player : MonoBehaviour
     private float inverseMoveTime;
 
     public GameObject target;
+    public GameObject target2;
 
     private bool isPressed = false;
     private bool isPressed2 = false;
@@ -77,16 +78,18 @@ public class player : MonoBehaviour
 
     void Feed()
     {
-        Vector3 newItemPos = this.gameObject.transform.position + new Vector3(1.0f, 0, 0);
+        Vector3 newItemPos = this.gameObject.transform.position + new Vector3(3.0f, 2.0f, 0);
 
-        Instantiate(target, newItemPos, Quaternion.identity);
+        //Instantiate(target, newItemPos, Quaternion.identity);
+        animator.SetTrigger("PlayerFeed");
     }
 
     void Love()
     {
         Vector3 newItemPos = this.gameObject.transform.position + new Vector3(1.0f, 0, 1.0f);
 
-        Instantiate(target, newItemPos, Quaternion.identity);
+        //Instantiate(target2, newItemPos, Quaternion.identity);
+        animator.SetTrigger("PlayerLove");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
