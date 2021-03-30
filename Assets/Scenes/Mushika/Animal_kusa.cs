@@ -17,7 +17,9 @@ public class Animal_kusa : MonoBehaviour
     private bool chase = false;
     private int item = 0;
     private GameObject player;
-    private bool state = true;  //true:–ì¶@false:’‡ŠÔ
+    private int state = 0;  //true:–ì¶@false:’‡ŠÔ
+    private float random_x;
+    private float random_y;
 
     void Start()
     {
@@ -31,8 +33,9 @@ public class Animal_kusa : MonoBehaviour
         movey = Random.Range(-1.0f, 1.0f);
 
         timeElapsed += Time.deltaTime;
-        
-        if (timeElapsed >= timeOut && chase == false && state == true)
+        Transform mytransform = this.transform;
+
+        if (timeElapsed >= timeOut && chase == false && state == 0)
         {
             rb.velocity = new Vector2(movex * speed, movey * speed);
 
@@ -40,25 +43,18 @@ public class Animal_kusa : MonoBehaviour
             timeOut = Random.Range(1.0f, 3.0f);
         }
 
-        if (chase == true && state == true)
+        if (chase == true && state == 0)
         {
             rb.velocity = new Vector2(0, 0); //-(animal-player)“®•¨‚Í‚É‚°‚é•ûŒü‚Å
         }
         
-        if (state == false)
+        if (state == 1)
         {
-            player = GameObject.Find("Animal_niku");
-            rb.velocity = new Vector2(player.transform.position.x, player.transform.position.y);
+            player = GameObject.Find("Player");
+            mytransform.position = new Vector2(player.transform.position.x + random_x, player.transform.position.y + random_y);
             Debug.Log("ŽÀs’†");
 
         }
-
-        if (Input.GetKeyDown("q"))
-        {
-            state = false;
-            
-        }
-
 
     }
 
@@ -67,7 +63,12 @@ public class Animal_kusa : MonoBehaviour
         food++;
         if (food >= 3)
         {
-            state = false;
+            Transform mytransform = this.transform;
+            state = 1;
+            player = GameObject.Find("Player");
+            random_x = Random.Range(-3.0f, 3.0f);
+            random_y = Random.Range(-3.0f, 3.0f);
+            mytransform.position = new Vector2(player.transform.position.x + random_x, player.transform.position.y + random_y);
         }
     }
 

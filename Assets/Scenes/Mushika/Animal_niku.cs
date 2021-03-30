@@ -16,6 +16,10 @@ public class Animal_niku : MonoBehaviour
     private int hp = 3;
     private bool chase = false;
     private int item = 0;
+    private GameObject player;
+    private int state = 0;  //true:–ì¶@false:’‡ŠÔ
+    private float random_x;
+    private float random_y;
 
     void Start()
     {
@@ -29,8 +33,9 @@ public class Animal_niku : MonoBehaviour
         movey = Random.Range(-1.0f, 1.0f);
 
         timeElapsed += Time.deltaTime;
+        Transform mytransform = this.transform;
 
-        if (timeElapsed >= timeOut && chase == false)
+        if (timeElapsed >= timeOut && chase == false && state == 0)
         {
             rb.velocity = new Vector2(movex * speed, movey * speed);
 
@@ -38,22 +43,33 @@ public class Animal_niku : MonoBehaviour
             timeOut = Random.Range(1.0f, 3.0f);
         }
 
-        if (chase == true)
+        if (chase == true && state == 0)
         {
             rb.velocity = new Vector2(0, 0); //animal-player
         }
 
+        if (state == 1)
+        {
+            player = GameObject.Find("Player");
+            mytransform.position = new Vector2(player.transform.position.x + random_x, player.transform.position.y + random_y);
+            Debug.Log("ŽÀs’†");
+
+        }
+
     }
 
-    public bool GetFood()
+    public void GetFood()
     {
         food++;
         if (food >= 3)
         {
-            Destroy(this.gameObject);
-            return true;
+            Transform mytransform = this.transform;
+            state = 1;
+            player = GameObject.Find("Player");
+            random_x = Random.Range(-3.0f, 3.0f);
+            random_y = Random.Range(-3.0f, 3.0f);
+            mytransform.position = new Vector2(player.transform.position.x + random_x, player.transform.position.y + random_y);
         }
-        return false;
     }
 
 
@@ -70,7 +86,5 @@ public class Animal_niku : MonoBehaviour
         return 0;
 
     }
-
-
 
 }
