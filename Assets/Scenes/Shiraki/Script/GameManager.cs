@@ -143,8 +143,8 @@ public class GameManager : MonoBehaviour
 
     void positionAnimals()
     {
-            Instantiate(Animal_kusa, new Vector3(0f, 0f, -0.5f), Quaternion.identity);
-            Instantiate(Animal_niku, new Vector3(0f, 0f, -0.5f), Quaternion.identity);
+            Instantiate(Animal_kusa, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
+            Instantiate(Animal_niku, new Vector3(18.0f, 15.0f, -1.0f), Quaternion.identity);
     }
 
     //ÉQÅ[ÉÄçXêV
