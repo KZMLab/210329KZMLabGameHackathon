@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     /*プレイヤー NPC*/
     public GameObject Player;
+    private GameObject unkoPlayer;
     public GameObject Animal_kusa;
     public GameObject Animal_niku;
     private ArrayList Animals_kusa = new ArrayList();
@@ -145,8 +146,9 @@ public class GameManager : MonoBehaviour
     public void InitGame()
     {
         //プレイヤーの配置
-        Player = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
-        playerLife = Player.GetComponent<player>();
+        unkoPlayer = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
+        playerLife = unkoPlayer.GetComponent<player>();
+        playerLife.life = 1;
         //動物の配置
         for (int i = 0; i < 10; i++)
         {
@@ -168,7 +170,7 @@ public class GameManager : MonoBehaviour
     public void terminateGame()
     {
         //プレイヤーの削除
-        Destroy(Player);
+        Destroy(unkoPlayer);
         //動物の削除
         for(int i = 0;i < Animals_kusa.Count; i++)
         {
