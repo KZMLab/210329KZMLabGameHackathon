@@ -49,6 +49,7 @@ public class ButtonScript : MonoBehaviour
                 gm.InitGame();
                 break;
             case "Title":
+                gm.terminateGame();
                 gm.scene = GameManager.GameScene.TITLE;
                 break;
         }

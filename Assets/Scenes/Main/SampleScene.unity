@@ -949,10 +949,11 @@ MonoBehaviour:
   SceneCount: 4
   Map: {fileID: 0}
   Player: {fileID: 8164970981087492694, guid: 16cde79acd7576842b29b16851dced32, type: 3}
-  Animal_kusa: {fileID: 6106461710706696850, guid: 60e9020cd85ad3f448f7572adbd7f17a,
+  Animal_kusa: {fileID: 8861976180371556533, guid: 60e9020cd85ad3f448f7572adbd7f17a,
     type: 3}
-  Animal_niku: {fileID: 7582621589544394273, guid: 12c4c51b79b77ca4f86cf7f3b1cb3d91,
+  Animal_niku: {fileID: 908318263815199231, guid: 12c4c51b79b77ca4f86cf7f3b1cb3d91,
     type: 3}
+  GameOverFlag: 0
   scene: 0
   enableControll: 0
   sceneChange: 0
