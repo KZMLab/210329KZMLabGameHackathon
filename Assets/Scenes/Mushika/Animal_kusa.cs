@@ -8,7 +8,6 @@ public class Animal_kusa : MonoBehaviour
     private Rigidbody2D rb = null;
     private float timeOut = 2.0f;
     private float timeElapsed;
-    private float timeAttack;
     private float movex;
     private float movey;
     private float speed = 2;
