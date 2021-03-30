@@ -82,8 +82,6 @@ public class GameManager : MonoBehaviour
             case GameScene.GAME:
                 SetScene(scene);
                 /*ゲーム処理*/
-                if (unko) InitGame();
-                unko = false;
                 updateGame();
                 /*----------*/
                 Debug.Log("ゲーム処理\n");
@@ -135,16 +133,11 @@ public class GameManager : MonoBehaviour
     }
 
     //ゲーム初期化
-    void InitGame()
+    public void InitGame()
     {
-        //動物の配置
-        positionAnimals();
         //プレイヤーの配置
-        Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
-    }
-
-    void positionAnimals()
-    {
+        Player = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
+        //動物の配置
         for (int i = 0; i < 10; i++)
         {
             Animals_kusa.Add(Instantiate(Animal_kusa, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity));
@@ -155,6 +148,22 @@ public class GameManager : MonoBehaviour
     //ゲーム更新
     void updateGame()
     {
+
+    }
+
+    public void terminateGame()
+    {
+        //プレイヤーの削除
+        Destroy(Player);
+        //動物の削除
+        for(int i = 0;i < Animals_kusa.Count; i++)
+        {
+            Destroy((Object)Animals_kusa[i]);
+        }
+        for(int i = 0;i < Animals_niku.Count; i++)
+        {
+            Destroy((Object)Animals_niku[i]);
+        }
 
     }
 }
