@@ -12,7 +12,9 @@ public class player : MonoBehaviour
 
     private int life; //player‚Ì‘Ì—Í
    
-    public int foodCount = 0;
+    [HideInInspector] public int foodCount = 0; //Š‚·‚é‚¦‚³‚Ì”
+    [HideInInspector] public int kusa_num = 0; //–¡•û‘H“®•¨‚Ì”
+    [HideInInspector] public int niku_num = 0; //–¡•û“÷H“®•¨‚Ì”
 
     private Animator animator;
 
@@ -31,6 +33,8 @@ public class player : MonoBehaviour
 
     void Start()
     {
+
+
         animator = GetComponent<Animator>();
         boxcollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
