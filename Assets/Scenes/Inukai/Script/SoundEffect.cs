@@ -22,22 +22,22 @@ public class SoundEffect : MonoBehaviour
     
 
     //ボタンを押したとき用
-    void ButtonPush()
+    public void ButtonPush()
     {
         audioSource.PlayOneShot(ClickSound);
     }
 
-    void GetItem()
+    public void GetItem()
     {
         audioSource.PlayOneShot(GetItemSound);
     }
 
-    void AnimalKusa()
+    public void AnimalKusa()
     {
         audioSource.PlayOneShot(AnimalKusaSound);
     }
 
-    void AnimalNiku()
+    public void AnimalNiku()
     {
         audioSource.PlayOneShot(AnimalNikuSound);
     }
