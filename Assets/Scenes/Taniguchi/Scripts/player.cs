@@ -5,7 +5,7 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     public float moveTime = 0.1f;
-    public float speed = 0.1f;
+    public float speed = 0.05f;
 
     public int pointsPerGrass = 10; //‘‚Ì‰ñ•œ—Ê
     public int pointsPerMeet = 20; //“÷‚Ì‰ñ•œ—Ê

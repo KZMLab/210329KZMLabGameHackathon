@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         //動物の配置
         positionAnimals();
         //プレイヤーの配置
-        Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
+        Player = Instantiate(Player, new Vector3(15.0f, 15.0f, -1.0f), Quaternion.identity);
     }
 
     void positionAnimals()
